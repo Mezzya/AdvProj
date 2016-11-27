@@ -34,8 +34,12 @@ public class MainController {
 	}
 
 	@RequestMapping("/delete")
-	public ModelAndView delete(@RequestParam(value="id") long id) {
-		advDAO.delete(id);
+	public ModelAndView delete(@RequestParam(value="id") long[] id) {
+
+		for (int i = 0; i < id.length ; i++) {
+			advDAO.delete(id[i]);
+		}
+
 		return new ModelAndView("index", "advs", advDAO.list());
 	}
 
